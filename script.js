@@ -8,15 +8,17 @@ fetch (requestUrl)
     .then (function(weather){      
             const CurrentWeatherEl = document.createElement('div');
             const CurrentCityEl = document.createElement('h3');
-            const CurrentWeatherIconEl = document.createElement('p');
+            const CurrentIconEl = document.createElement('img');
             const CurrentTempEl = document.createElement("p");
             const CurrentWindEl = document.createElement("p");
             const CurrentHumidity=document.createElement("p");
             const today=dayjs().format("(MM/DD/YYYY)");
             CurrentCityEl.textContent=weather.name+" "+today;
+            CurrentIconEl.src=`https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
             CurrentTempEl.textContent= `Temp: ${weather.main.temp} °F`;
             CurrentWindEl.textContent=`Wind: ${weather.wind.speed} MPH`;
             CurrentHumidity.textContent=`Humidity: ${weather.main.humidity} %`;
+            CurrentCityEl.append(CurrentIconEl);
             CurrentWeatherEl.append(CurrentCityEl,CurrentTempEl,CurrentWindEl,CurrentHumidity);
             document.body.appendChild(CurrentWeatherEl);
             console.log(CurrentWeatherEl);
