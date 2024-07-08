@@ -1,6 +1,7 @@
 const APIkey="3b41a3a2d317ea4220e8e87edf0ba6f5";
 
 
+
 function getCity() {
   
   const currentWeatherContainer = document.getElementById('currentWeather');
@@ -15,7 +16,6 @@ function getCity() {
   }
 
 
-
   const city = document.getElementById("cityInput").value;
   const currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=imperial`;
   const futureUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=imperial`;
@@ -24,7 +24,8 @@ fetch (currentUrl)
     .then (function (response){
         return response.json();
     })
-    .then (function(weather){      
+    .then (function(weather){  
+      localStorage.setItem('currentWeather', JSON.stringify(weather));    
             const CurrentWeatherEl = document.createElement('div');
             const CurrentCityEl = document.createElement('h3');
             const CurrentIconEl = document.createElement('img');
@@ -50,6 +51,7 @@ fetch (futureUrl)
     return response.json();
 })
 .then (function(forcast){
+  localStorage.setItem('forecast', JSON.stringify(forecast));
   for (i=7; i<forcast.list.length; i=i+8){  
             const forcastEl = document.createElement('div');
             const forcastDateEl = document.createElement('h4');
