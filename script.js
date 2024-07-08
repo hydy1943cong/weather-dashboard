@@ -1,7 +1,25 @@
 const APIkey="3b41a3a2d317ea4220e8e87edf0ba6f5";
-const currentUrl = "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=3b41a3a2d317ea4220e8e87edf0ba6f5&units=imperial";
-const futureUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=3b41a3a2d317ea4220e8e87edf0ba6f5&units=imperial";
 
+
+function getCity() {
+  
+  const currentWeatherContainer = document.getElementById('currentWeather');
+  const forecastContainer = document.getElementById('forecast');
+
+  if (currentWeatherContainer) {
+    currentWeatherContainer.innerHTML = '';
+  }
+
+  if (forecastContainer) {
+    forecastContainer.innerHTML = '';
+  }
+
+
+
+  const city = document.getElementById("cityInput").value;
+  const currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=imperial`;
+  const futureUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=imperial`;
+  
 fetch (currentUrl)
     .then (function (response){
         return response.json();
@@ -21,33 +39,36 @@ fetch (currentUrl)
             CurrentHumidity.textContent=`Humidity: ${weather.main.humidity} %`;
             CurrentCityEl.append(CurrentIconEl);
             CurrentWeatherEl.append(CurrentCityEl,CurrentTempEl,CurrentWindEl,CurrentHumidity);
-            document.body.appendChild(CurrentWeatherEl);
-            console.log(CurrentWeatherEl);
-            console.log(weather);
+            currentWeatherContainer.appendChild(CurrentWeatherEl);
           }
         )
-    
+
+
+
 fetch (futureUrl)
 .then (function (response){
     return response.json();
 })
-.then (function(forcast){  
-  console.log(forcast);
-  for (i=7; i<forcast.list.length; i=i+8){
-            const Day1El = document.createElement('div');
-            const Day1DateEl = document.createElement('h4');
-            const Day1IconEl = document.createElement('img');
-            const Day1TempEl = document.createElement("p");
-            const Day1WindEl = document.createElement("p");
-            const Day1Humidity=document.createElement("p");
-            Day1DateEl.textContent=dayjs.unix(forcast.list[i].dt).format("MM/DD/YYYY");
-            Day1IconEl.src=`https://openweathermap.org/img/w/${forcast.list[i].weather[0].icon}.png`;
-            Day1TempEl.textContent= `Temp: ${forcast.list[i].main.temp} °F`;
-            Day1WindEl.textContent=`Wind: ${forcast.list[i].wind.speed} MPH`;
-            Day1Humidity.textContent=`Humidity: ${forcast.list[i].main.humidity} %`;
-            Day1DateEl.append(Day1IconEl);
-            Day1El.append(Day1DateEl,Day1TempEl,Day1WindEl,Day1Humidity);
-            document.body.appendChild(Day1El);
+.then (function(forcast){
+  for (i=7; i<forcast.list.length; i=i+8){  
+            const forcastEl = document.createElement('div');
+            const forcastDateEl = document.createElement('h4');
+            const forcastIconEl = document.createElement('img');
+            const forcastTempEl = document.createElement("p");
+            const forcastWindEl = document.createElement("p");
+            const forcastHumidity=document.createElement("p");
+            forcastDateEl.textContent=dayjs.unix(forcast.list[i].dt).format("MM/DD/YYYY");
+            forcastIconEl.src=`https://openweathermap.org/img/w/${forcast.list[i].weather[0].icon}.png`;
+            forcastTempEl.textContent= `Temp: ${forcast.list[i].main.temp} °F`;
+            forcastWindEl.textContent=`Wind: ${forcast.list[i].wind.speed} MPH`;
+            forcastHumidity.textContent=`Humidity: ${forcast.list[i].main.humidity} %`;
+            forcastDateEl.append(forcastIconEl);
+            forcastEl.append(forcastDateEl,forcastTempEl,forcastWindEl,forcastHumidity);
+            forecastContainer.appendChild(forcastEl);
   }
 }
-    )  
+    )
+
+}
+
+;

@@ -19,10 +19,11 @@
 <body>
     <h1>Weather Dashboard</h1>
     <form method="get">
-        <input type="text" name="q" placeholder="San Diego"><br>
-        <button>Search</button>
+        <input type="text" name="q" id="cityInput" placeholder="Detroit"><br>
+        <button type="button" onclick="getCity()">Search</button>
     </form>
-
+    <div id="currentWeather"></div>
+    <div id="forecast"></div>
     <script src="script.js"></script>
 
 </body>
