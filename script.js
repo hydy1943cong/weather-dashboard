@@ -6,6 +6,7 @@ function getCity() {
   
   const currentWeatherContainer = document.getElementById('currentWeather');
   const forecastContainer = document.getElementById('forecast');
+  const searchHistoryContainer = document.getElementById('searchHistory');
 
   if (currentWeatherContainer) {
     currentWeatherContainer.innerHTML = '';
@@ -41,6 +42,7 @@ fetch (currentUrl)
             CurrentCityEl.append(CurrentIconEl);
             CurrentWeatherEl.append(CurrentCityEl,CurrentTempEl,CurrentWindEl,CurrentHumidity);
             currentWeatherContainer.appendChild(CurrentWeatherEl);
+            updateSearchHistory(city);
           }
         )
 
@@ -73,4 +75,9 @@ fetch (futureUrl)
 
 }
 
-;
+function updateSearchHistory(city) {
+  const searchHistoryContainer = document.getElementById('searchHistory');
+  const historyItem = document.createElement('div');
+  historyItem.textContent = `${city}`;
+  searchHistoryContainer.appendChild(historyItem);
+}
