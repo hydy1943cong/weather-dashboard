@@ -125,7 +125,6 @@ fetch (currentUrl)
             CurrentCityEl.append(CurrentIconEl);
             CurrentWeatherEl.append(CurrentCityEl,CurrentTempEl,CurrentWindEl,CurrentHumidity);
             currentWeatherContainer.appendChild(CurrentWeatherEl);
-            updateSearchHistory(city.value);
           }
         )
 

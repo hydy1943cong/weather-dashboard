@@ -14,18 +14,27 @@
     integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
     crossorigin="anonymous"
   ></script>
-
+  <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
     <h1>Weather Dashboard</h1>
-    <form method="get">
-        <input type="text" name="q" id="cityInput" placeholder="Detroit"><br>
-        <button type="button" onclick="getWeather()">Search</button>
-    </form>
-    <div id="searchHistory"></div>
-    <div id="currentWeather"></div>
-    <div id="forecast"></div>
-    <script src="script.js"></script>
+    <div id="dashboard">
+      <div id="search-box">
+        <h2>Search for a City:</h2>
+        <form method="get">
+          <input type="text" name="q" id="cityInput" placeholder="Detroit"><br>
+          <button id="search-button" type="button" onclick="getWeather()">Search</button>
+      </form>
+        <div id="searchHistory"></div>
+      </div>
+      <div id="weather-box">
+      <div id="currentWeather"></div>
+      <div id="forecast">
+      </div>
+     </div>
+    </div>
+    
+    <script src="./assets/script.js"></script>
 
 </body>
 </html>
