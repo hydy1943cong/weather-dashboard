@@ -13,6 +13,6 @@ THEN you are again presented with current and future conditions for that city
 
 Below is a screenshot of the app:
 
-![alt text](./assets/screenshot_weather.png)
+![alt text](./assets/screenshot.png)
 
 Here is the link to the webpage: https://hydy1943cong.github.io/weather-dashboard/

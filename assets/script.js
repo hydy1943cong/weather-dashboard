@@ -54,6 +54,7 @@ fetch (futureUrl)
   localStorage.setItem('forecast', JSON.stringify(forecast));
   for (i=7; i<forcast.list.length; i=i+8){  
             const forcastEl = document.createElement('div');
+            forcastEl.classList.add('forecast-item'); 
             const forcastTitleEl=document.createElement('h3');
             const forcastDateEl = document.createElement('h4');
             const forcastIconEl = document.createElement('img');
@@ -138,6 +139,7 @@ fetch (futureUrl)
   localStorage.setItem('forecast', JSON.stringify(forecast));
   for (i=7; i<forcast.list.length; i=i+8){  
             const forcastEl = document.createElement('div');
+            forcastEl.classList.add('forecast-item'); 
             const forcastDateEl = document.createElement('h4');
             const forcastIconEl = document.createElement('img');
             const forcastTempEl = document.createElement("p");
