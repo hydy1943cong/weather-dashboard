@@ -54,11 +54,13 @@ fetch (futureUrl)
   localStorage.setItem('forecast', JSON.stringify(forecast));
   for (i=7; i<forcast.list.length; i=i+8){  
             const forcastEl = document.createElement('div');
+            const forcastTitleEl=document.createElement('h3');
             const forcastDateEl = document.createElement('h4');
             const forcastIconEl = document.createElement('img');
             const forcastTempEl = document.createElement("p");
             const forcastWindEl = document.createElement("p");
             const forcastHumidity=document.createElement("p");
+            forcastTitleEl.textContent="5-Day Forecast:";
             forcastDateEl.textContent=dayjs.unix(forcast.list[i].dt).format("MM/DD/YYYY");
             forcastIconEl.src=`https://openweathermap.org/img/w/${forcast.list[i].weather[0].icon}.png`;
             forcastTempEl.textContent= `Temp: ${forcast.list[i].main.temp} °F`;
@@ -66,7 +68,7 @@ fetch (futureUrl)
             forcastHumidity.textContent=`Humidity: ${forcast.list[i].main.humidity} %`;
             forcastDateEl.append(forcastIconEl);
             forcastEl.append(forcastDateEl,forcastTempEl,forcastWindEl,forcastHumidity);
-            forecastContainer.appendChild(forcastEl);
+            forecastContainer.append(forcastEl);
   }
 }
     )
